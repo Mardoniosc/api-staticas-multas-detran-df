@@ -14,8 +14,15 @@ import br.com.mardonio.service.MultasService;
 
 @RestController
 @RequestMapping("/multas")
-public class Multas2019Resource {
+public class MultasResource {
 	
+	@GetMapping("/2018")
+	public ResponseEntity<List<Multa>> getAll2018() throws IOException, NoSuchFileException {
+		String path = "./static/multas2018.json";
+		List<Multa> multas = MultasService.readListFrom(path);
+		return ResponseEntity.ok().body(multas);
+	}
+
 	@GetMapping("/2019")
 	public ResponseEntity<List<Multa>> getAll2019() throws IOException, NoSuchFileException {
 		String path = "./static/multas2019.json";
